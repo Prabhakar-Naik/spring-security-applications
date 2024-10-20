@@ -1,0 +1,31 @@
+###
+GET http://localhost:8080/getAllProducts
+
+
+###
+GET http://localhost:8080/getProductById/104
+
+
+###
+POST http://localhost:8080/addProduct
+Content-Type: application/json
+
+{
+  "id": 105,
+  "name": "Mobile",
+  "price": 15000
+}
+
+
+###
+PUT http://localhost:8080/updateProduct
+Content-Type: application/json
+
+{
+  "id": 105,
+  "name": "Mi Mobile",
+  "price": 18000
+}
+
+###
+DELETE http://localhost:8080/deleteProduct?id=102
