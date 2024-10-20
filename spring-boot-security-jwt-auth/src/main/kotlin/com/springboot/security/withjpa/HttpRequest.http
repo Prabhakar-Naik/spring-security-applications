@@ -1,0 +1,32 @@
+###
+POST http://localhost:8080/addAddress
+Content-Type: application/json
+
+{
+  "city": "atp",
+  "state": "ap",
+  "country": "IN",
+  "mobile": "23746583756"
+}
+
+###
+GET http://localhost:8080/getAllAddress
+
+###
+GET http://localhost:8080/getAddressById/1
+
+###
+PUT http://localhost:8080/updateAddress
+Content-Type: application/json
+
+{
+  "id": 2,
+  "city": "Guntur",
+  "state": "ap",
+  "country": "IN",
+  "mobile": "9876543212"
+}
+
+
+###
+DELETE http://localhost:8080/deleteAddress?id=3
