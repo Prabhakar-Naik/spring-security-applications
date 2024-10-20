@@ -1,0 +1,43 @@
+###
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+  "name": "sai",
+  "email": "sai@gmail.com",
+  "password": "sai@123"
+}
+
+
+###
+POST http://localhost:8080/api/users/login?email=kiran@gmail.com&password=kiran@123
+Content-Type: application/x-www-form-urlencoded
+
+
+###
+GET http://localhost:8080/api/users/getUserById/4d188bb4-918f-4966-b17c-5e2405ee89be
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWlAZ21haWwuY29tIiwiaWF0IjoxNzI4NjM5OTcwLCJleHAiOjE3Mjg2NDE3NzB9.YuYgt2ZRIRnAy48OWnpD_Zhsoe_bA85_67dj0R_aa4c
+
+
+
+###
+GET http://localhost:8080/api/users/getUserByEmail/prabhakar@gmail.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWlAZ21haWwuY29tIiwiaWF0IjoxNzI4NjM5OTcwLCJleHAiOjE3Mjg2NDE3NzB9.YuYgt2ZRIRnAy48OWnpD_Zhsoe_bA85_67dj0R_aa4c
+
+
+###
+GET http://localhost:8080/api/users/getAllUsers
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWlAZ21haWwuY29tIiwiaWF0IjoxNzI4NjM5OTcwLCJleHAiOjE3Mjg2NDE3NzB9.YuYgt2ZRIRnAy48OWnpD_Zhsoe_bA85_67dj0R_aa4c
+
+
+###
+PUT http://localhost:8080/api/users/updateUser
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWlAZ21haWwuY29tIiwiaWF0IjoxNzI4NjM5OTcwLCJleHAiOjE3Mjg2NDE3NzB9.YuYgt2ZRIRnAy48OWnpD_Zhsoe_bA85_67dj0R_aa4c
+
+{
+  "id": "3bfad46a-88ad-440e-b5be-906cdab21660",
+  "name": "prabhakar",
+  "email": "prabhakar@gmail.com",
+  "password": "prabha@123"
+}
