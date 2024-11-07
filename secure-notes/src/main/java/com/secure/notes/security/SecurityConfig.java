@@ -1,19 +1,18 @@
 package com.secure.notes.security;
 
+import com.secure.notes.models.AppRole;
+import com.secure.notes.models.Role;
+import com.secure.notes.models.User;
+import com.secure.notes.repositories.UserRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import javax.sql.DataSource;
+import java.time.LocalDate;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -25,6 +24,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
 
+    /*
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests((request) ->
@@ -41,9 +41,24 @@ public class SecurityConfig {
 
         httpSecurity.httpBasic(withDefaults());
         return httpSecurity.build();
+    }*/
+
+    // there is no differ above one and below one clear picture on testing purpose
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeHttpRequests((request) ->
+                request.anyRequest().authenticated());
+
+        httpSecurity.csrf(AbstractHttpConfigurer::disable);
+        //httpSecurity.formLogin(withDefaults());
+        httpSecurity.httpBasic(withDefaults());
+        return httpSecurity.build();
     }
 
 
+    /*
+    // no need this configuration after configuring database based users
+    // in userDetails to communication with spring security framework.
     @Bean
     public UserDetailsService userDetailsService(DataSource dataSource){
         JdbcUserDetailsManager manager =
@@ -66,6 +81,48 @@ public class SecurityConfig {
 
         return manager;
     }
+*/
+    // dummy role data for testing
 
+    @Bean
+    public CommandLineRunner initData(RoleRepository roleRepository, UserRepository userRepository){
+        return args -> {
+            Role userRole = roleRepository.findByRoleName(AppRole.ROLE_USER)
+                    .orElseGet(() -> roleRepository.save(new Role(AppRole.ROLE_USER)));
+
+            Role adminRole = roleRepository.findByRoleName(AppRole.ROLE_ADMIN)
+                    .orElseGet(() -> roleRepository.save(new Role(AppRole.ROLE_ADMIN)));
+
+            if (!userRepository.existsByUsername("user1")){
+                User user1 = new User("user1","user1@gmail.com","{noop}password1");
+                user1.setAccountNonLocked(false);
+                user1.setAccountNonExpired(true);
+                user1.setCredentialsNonExpired(true);
+                user1.setEnabled(true);
+                user1.setCredentialsExpiryDate(LocalDate.now().plusYears(1));
+                user1.setAccountExpiryDate(LocalDate.now().plusYears(1));
+                user1.setTwoFactorEnabled(false);
+                user1.setSignupMethod("email");
+                user1.setRole(userRole);
+                userRepository.save(user1);
+            }
+
+            if (!userRepository.existsByUsername("admin")){
+                User admin = new User("admin","admin@gmail.com","{noop}adminPassword1");
+                admin.setAccountNonLocked(true);
+                admin.setAccountNonExpired(true);
+                admin.setCredentialsNonExpired(true);
+                admin.setEnabled(true);
+                admin.setCredentialsExpiryDate(LocalDate.now().plusYears(1));
+                admin.setAccountExpiryDate(LocalDate.now().plusYears(1));
+                admin.setTwoFactorEnabled(false);
+                admin.setSignupMethod("email");
+                admin.setRole(adminRole);
+                userRepository.save(admin);
+            }
+
+
+        };
+    }
 
 }
