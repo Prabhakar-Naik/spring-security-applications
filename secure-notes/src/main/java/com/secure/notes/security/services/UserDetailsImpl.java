@@ -34,7 +34,8 @@ public class UserDetailsImpl implements UserDetails {
     private boolean is2faEnabled;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(long id, String username, String email, String password, boolean is2faEnabled, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailsImpl(long id, String username, String email, String password,
+                           boolean is2faEnabled, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
