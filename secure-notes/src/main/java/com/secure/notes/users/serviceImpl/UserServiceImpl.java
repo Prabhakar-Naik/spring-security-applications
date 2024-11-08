@@ -1,12 +1,12 @@
-package com.secure.notes.serviceImpl;
+package com.secure.notes.users.serviceImpl;
 
-import com.secure.notes.dtos.UserDTO;
-import com.secure.notes.models.AppRole;
-import com.secure.notes.models.Role;
-import com.secure.notes.models.User;
-import com.secure.notes.repositories.RoleRepository;
-import com.secure.notes.repositories.UserRepository;
-import com.secure.notes.service.UserService;
+import com.secure.notes.users.dtos.UserDTO;
+import com.secure.notes.users.model.AppRole;
+import com.secure.notes.users.model.Role;
+import com.secure.notes.users.model.User;
+import com.secure.notes.users.repository.RoleRepository;
+import com.secure.notes.users.repository.UserRepository;
+import com.secure.notes.users.service.UserService;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

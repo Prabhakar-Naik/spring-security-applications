@@ -1,25 +1,20 @@
 package com.secure.notes.security;
 
-import com.secure.notes.models.AppRole;
-import com.secure.notes.models.Role;
-import com.secure.notes.models.User;
-import com.secure.notes.repositories.RoleRepository;
-import com.secure.notes.repositories.UserRepository;
+import com.secure.notes.users.model.AppRole;
+import com.secure.notes.users.model.Role;
+import com.secure.notes.users.model.User;
+import com.secure.notes.users.repository.RoleRepository;
+import com.secure.notes.users.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import javax.sql.DataSource;
 
 import java.time.LocalDate;
 
@@ -67,6 +62,10 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     /*
     // no need this configuration after configuring database based users

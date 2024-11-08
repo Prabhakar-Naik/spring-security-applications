@@ -1,8 +1,8 @@
-package com.secure.notes.controller;
+package com.secure.notes.admins.controller;
 
-import com.secure.notes.dtos.UserDTO;
-import com.secure.notes.models.Role;
-import com.secure.notes.models.User;
+import com.secure.notes.users.dtos.UserDTO;
+import com.secure.notes.users.model.Role;
+import com.secure.notes.users.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

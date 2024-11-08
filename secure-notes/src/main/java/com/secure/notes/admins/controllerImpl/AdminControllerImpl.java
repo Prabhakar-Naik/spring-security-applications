@@ -1,10 +1,10 @@
-package com.secure.notes.controllerImpl;
+package com.secure.notes.admins.controllerImpl;
 
-import com.secure.notes.controller.AdminController;
-import com.secure.notes.dtos.UserDTO;
-import com.secure.notes.models.Role;
-import com.secure.notes.models.User;
-import com.secure.notes.service.UserService;
+import com.secure.notes.admins.controller.AdminController;
+import com.secure.notes.users.dtos.UserDTO;
+import com.secure.notes.users.model.Role;
+import com.secure.notes.users.model.User;
+import com.secure.notes.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

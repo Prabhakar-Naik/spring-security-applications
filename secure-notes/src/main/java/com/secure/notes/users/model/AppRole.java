@@ -1,4 +1,4 @@
-package com.secure.notes.models;
+package com.secure.notes.users.model;
 
 /**
  * @author prabhakar, @Date 06-11-2024

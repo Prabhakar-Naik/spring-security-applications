@@ -1,6 +1,6 @@
-package com.secure.notes.controller;
+package com.secure.notes.notes.controller;
 
-import com.secure.notes.models.Note;
+import com.secure.notes.notes.models.Note;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;

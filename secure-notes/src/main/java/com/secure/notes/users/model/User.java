@@ -1,4 +1,4 @@
-package com.secure.notes.models;
+package com.secure.notes.users.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,7 +12,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * @author prabhakar, @Date 06-11-2024

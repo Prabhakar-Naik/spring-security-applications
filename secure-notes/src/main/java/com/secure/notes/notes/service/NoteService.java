@@ -1,6 +1,6 @@
-package com.secure.notes.service;
+package com.secure.notes.notes.service;
 
-import com.secure.notes.models.Note;
+import com.secure.notes.notes.models.Note;
 
 import java.util.List;
 

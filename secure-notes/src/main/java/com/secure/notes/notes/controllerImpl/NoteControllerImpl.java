@@ -1,8 +1,8 @@
-package com.secure.notes.controllerImpl;
+package com.secure.notes.notes.controllerImpl;
 
-import com.secure.notes.controller.NoteController;
-import com.secure.notes.models.Note;
-import com.secure.notes.service.NoteService;
+import com.secure.notes.notes.controller.NoteController;
+import com.secure.notes.notes.models.Note;
+import com.secure.notes.notes.service.NoteService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RestController;
 

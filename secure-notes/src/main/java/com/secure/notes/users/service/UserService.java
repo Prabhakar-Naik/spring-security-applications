@@ -1,8 +1,8 @@
-package com.secure.notes.service;
+package com.secure.notes.users.service;
 
-import com.secure.notes.dtos.UserDTO;
-import com.secure.notes.models.Role;
-import com.secure.notes.models.User;
+import com.secure.notes.users.dtos.UserDTO;
+import com.secure.notes.users.model.Role;
+import com.secure.notes.users.model.User;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 
 import java.util.List;

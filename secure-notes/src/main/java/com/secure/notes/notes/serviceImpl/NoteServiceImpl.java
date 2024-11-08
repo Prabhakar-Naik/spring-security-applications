@@ -1,9 +1,8 @@
-package com.secure.notes.serviceImpl;
+package com.secure.notes.notes.serviceImpl;
 
-import com.secure.notes.models.Note;
-import com.secure.notes.repositories.NoteRepository;
-import com.secure.notes.service.NoteService;
-import org.aspectj.weaver.ast.Not;
+import com.secure.notes.notes.models.Note;
+import com.secure.notes.notes.repository.NoteRepository;
+import com.secure.notes.notes.service.NoteService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
