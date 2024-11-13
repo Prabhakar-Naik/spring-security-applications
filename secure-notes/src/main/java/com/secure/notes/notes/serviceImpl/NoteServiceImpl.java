@@ -1,5 +1,6 @@
 package com.secure.notes.notes.serviceImpl;
 
+import com.secure.notes.auditlog.service.AuditLogService;
 import com.secure.notes.notes.models.Note;
 import com.secure.notes.notes.repository.NoteRepository;
 import com.secure.notes.notes.service.NoteService;
@@ -14,9 +15,11 @@ import java.util.List;
 public class NoteServiceImpl implements NoteService {
 
     private final NoteRepository noteRepository;
+    private final AuditLogService auditLogService;
 
-    public NoteServiceImpl(NoteRepository noteRepository) {
+    public NoteServiceImpl(NoteRepository noteRepository, AuditLogService auditLogService) {
         this.noteRepository = noteRepository;
+        this.auditLogService = auditLogService;
     }
 
     @Override
@@ -24,19 +27,28 @@ public class NoteServiceImpl implements NoteService {
         Note note = new Note();
         note.setContent(content);
         note.setOwnerUserName(userName);
-        return this.noteRepository.save(note);
+        Note savedNote = noteRepository.save(note);
+        auditLogService.logNoteCreation(userName, note);
+        return savedNote;
     }
 
     @Override
     public Note updateNoteForUser(Long noteId, String content, String userName) {
-        Note note = this.noteRepository.findById(noteId).orElseThrow(() -> new RuntimeException("Note Not Found.!"));
+        Note note = noteRepository.findById(noteId).orElseThrow(()
+                -> new RuntimeException("Note not found"));
         note.setContent(content);
-        return this.noteRepository.save(note);
+        Note updatedNote = noteRepository.save(note);
+        auditLogService.logNoteUpdate(userName, note);
+        return updatedNote;
     }
 
     @Override
     public void deleteNoteForUser(Long noteId, String userName) {
-        this.noteRepository.deleteById(noteId);
+        Note note = noteRepository.findById(noteId).orElseThrow(
+                () -> new RuntimeException("Note not found")
+        );
+        auditLogService.logNoteDeletion(userName, noteId);
+        noteRepository.delete(note);
     }
 
     @Override
