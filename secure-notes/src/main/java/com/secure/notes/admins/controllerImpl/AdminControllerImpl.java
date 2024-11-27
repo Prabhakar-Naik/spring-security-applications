@@ -5,6 +5,7 @@ import com.secure.notes.users.dtos.UserDTO;
 import com.secure.notes.users.model.Role;
 import com.secure.notes.users.model.User;
 import com.secure.notes.users.service.UserService;
+import com.secure.notes.users.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import java.util.List;
 public class AdminControllerImpl implements AdminController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Override
     public ResponseEntity<List<User>> getAllUsers() {
@@ -39,31 +40,41 @@ public class AdminControllerImpl implements AdminController {
 
     @Override
     public ResponseEntity<String> updateAccountLockStatus(Long userId, boolean lock) {
-        return ResponseEntity.ok("");
+
+        userService.updateAccountLockStatus(userId, lock);
+        return ResponseEntity.ok("Account lock status updated");
     }
 
     @Override
     public List<Role> getAllRoles() {
-        return null;
+        return userService.getAllRoles();
     }
 
     @Override
     public ResponseEntity<String> updateAccountExpiryStatus(Long userId, boolean expire) {
-        return null;
+        userService.updateAccountExpiryStatus(userId, expire);
+        return ResponseEntity.ok("Account expiry status updated");
     }
 
     @Override
     public ResponseEntity<String> updateAccountEnabledStatus(Long userId, boolean enabled) {
-        return null;
+        userService.updateAccountEnabledStatus(userId, enabled);
+        return ResponseEntity.ok("Account enabled status updated");
     }
 
     @Override
     public ResponseEntity<String> updateCredentialsExpiryStatus(Long userId, boolean expire) {
-        return null;
+        userService.updateCredentialsExpiryStatus(userId, expire);
+        return ResponseEntity.ok("Credentials expiry status updated");
     }
 
     @Override
     public ResponseEntity<String> updatePassword(Long userId, String password) {
-        return null;
+        try {
+            this.userService.updatePassword(userId, password);
+            return ResponseEntity.ok("Password updated");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 }

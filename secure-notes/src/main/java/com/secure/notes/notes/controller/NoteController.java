@@ -26,4 +26,5 @@ public interface NoteController {
     void deleteNote(@PathVariable Long noteId, @AuthenticationPrincipal UserDetails userDetails);
 
 
+
 }

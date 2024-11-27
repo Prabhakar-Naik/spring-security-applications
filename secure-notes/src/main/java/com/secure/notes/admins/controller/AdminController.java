@@ -13,10 +13,11 @@ import java.util.List;
  * @author prabhakar, @Date 07-11-2024
  */
 @RequestMapping(value = "/api/admin")
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+//@PreAuthorize("hasRole('ROLE_ADMIN')")
 public interface AdminController {
 
 
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/getAllUsers")
     ResponseEntity<List<User>> getAllUsers();
 
